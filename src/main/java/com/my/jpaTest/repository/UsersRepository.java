@@ -29,4 +29,8 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     // 5. 최근 1개월 자료 검색
     List<Users> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
+
+    // 6. 좋아하는 색상이 Pink, Red인 모든 자료 출력
+    // In 구문에는 리스트를 인자로 준다.
+    List<Users> findByLikeColorIn(List<String> color);
 }

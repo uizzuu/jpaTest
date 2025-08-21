@@ -1,6 +1,7 @@
 package com.my.jpaTest.repository;
 
 import com.my.jpaTest.dto.Gender;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,8 +52,8 @@ class UsersRepositoryTest {
     @DisplayName("4. 어제 이후 모든 자료 검색 테스트")
     void findByCreatedAtAfter() {
         LocalDateTime today = LocalDate.now()
-                .minusDays(2L).atTime(23,59,59);
-        System.out.println("today : "+ today);
+                .minusDays(2L).atTime(23, 59, 59);
+        System.out.println("today : " + today);
         usersRepository
                 .findByCreatedAtAfter(today)
                 .forEach(x -> System.out.println(x));
@@ -64,11 +67,18 @@ class UsersRepositoryTest {
                 .minusMonths(1L)
                 .atStartOfDay();
         LocalDateTime end = LocalDate.now()
-                .plusDays(1L)
-                .atStartOfDay();
+                .atTime(23, 59, 59);
         System.out.println("start : " + start);
         System.out.println("end : " + end);
         usersRepository.findByCreatedAtBetween(start, end)
+                .forEach(x -> System.out.println(x));
+    }
+
+    @Test
+    @DisplayName("6. 여러가지 좋아하는 색상 검색하기")
+    void findByLikeColorIn() {
+        // 검색하고자 하는 색상의 리스트 만들기
+        usersRepository.findByLikeColorIn(Lists.newArrayList("Red", "Pink"))
                 .forEach(x -> System.out.println(x));
     }
 }
