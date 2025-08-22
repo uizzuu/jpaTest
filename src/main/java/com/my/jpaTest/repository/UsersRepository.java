@@ -2,8 +2,12 @@ package com.my.jpaTest.repository;
 
 import com.my.jpaTest.dto.Gender;
 import com.my.jpaTest.entity.Users;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -84,4 +88,24 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     // 문제 4. 가장 최근 생성된 자료 10건을 ID, 이름, 성별, 생성일 만 출력하시오.
     List<Users> findTop10ByOrderByCreatedAtDesc();
+
+    // 문제 6. 갱신일이 생성일 이전인 잘못된 데이터를 출력하시오.
+    @Query("SELECT u FROM Users u WHERE u.updatedAt < u.createdAt")
+    List<Users> findInvalidUsers();
+
+    // 문제 7. 이메일에 edu를 갖는 여성 데이터를 가장 최근 데이터부터 보이도록 출력하시오.
+    List<Users> findByEmailContainsAndGenderOrderByCreatedAtAsc(String contain, Gender gender);
+
+    // 문제 8. 좋아하는 색상(Pink)별로 오름차순 정렬하고 같은 색상 데이터는 이름의 내림차순으로 출력하시오.
+    @Query("SELECT u.id, u.likeColor, u.name FROM Users u ORDER BY u.likeColor ASC, u.name DESC")
+    List<Object[]> findAllByLikeColor();
+
+    // 문제10. 남성 자료를 ID의 내림차순으로 정렬한 후 한페이당 3건을 출력하되 그 중 2번째 페이지 자료를  출력하시오.
+    Page<Users> findByGender(Gender gender, Pageable pageable);
+
+    // 문제11. 지난달의 모든 자료를 검색하여 출력하시오.
+    @Query("SELECT u FROM Users u " +
+            "WHERE FUNCTION('MONTH', u.createdAt) = :month " +
+            "ORDER BY u.createdAt ASC")
+    List<Users> findByCreatedMonth(@Param("month") int month);
 }
