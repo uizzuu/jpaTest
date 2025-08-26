@@ -28,8 +28,9 @@ class UserTestTest {
     @Test
     @DisplayName("테이블 수정 테스트")
     void userTestUpdate() {
-        // 1. 아이디 정보를 가져온다
+        // 1번 아이디 정보를 가져온다.
         UserTest jang = userTestRepository.findById(1L).orElse(null);
+
         // 2. 이메일을 수정한다.
         jang.setEmail("jang@b.c");
         userTestRepository.save(jang);

@@ -4,17 +4,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-// 테스트 코드 작성 단축기 : Ctrl + Shift + T
+// 테스트 코드 작성 단축키 : Ctrl + Shift + T
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-// BaseEntity의 ToString 호출
+// BaesEntity의 ToString 호출
 @ToString(callSuper = true)
-public class UserTest extends BaseEntity {
+public class UserTest extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
