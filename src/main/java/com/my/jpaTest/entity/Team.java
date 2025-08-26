@@ -25,5 +25,6 @@ public class Team {
     // 팀에 소속된 멤버의 리스트를 저장
     // member와 양방향 연관관계 설정 : Member 클래스의 Team 정보를 가리킴
     @OneToMany(mappedBy = "team", fetch = FetchType.EAGER) // Member에 저장된 Team team을 가리킴
+    @Builder.Default
     private List<Member> memberList = new ArrayList<>();
 }
