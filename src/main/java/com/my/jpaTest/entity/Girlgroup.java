@@ -21,7 +21,7 @@ public class Girlgroup {
 
     @ManyToOne
     @JoinColumn(name = "e_id")
-    private Entertainment entertainment;
+    Entertainment entertainment;
 
     @OneToMany(mappedBy = "girlgroup"
             , cascade = {CascadeType.PERSIST, CascadeType.REMOVE}

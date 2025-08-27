@@ -25,7 +25,7 @@ class EntertainmentServiceTest {
     @Test
     @DisplayName("initData 실행")
     public void initData() {
-        entertainmentService.initData();
+        // entertainmentService.initData();
     }
 
     @Test
@@ -40,9 +40,8 @@ class EntertainmentServiceTest {
     @DisplayName("2. blackPink 멤버 리스트 출력하기.")
     public void print2() {
         Girlgroup bp = em.find(Girlgroup.class, "blackPink");
-        List<IdolMember> members = bp.getIdolMemberList();
-        for (IdolMember m : members) {
-            System.out.println(m.getM_id());
-        }
+        bp.getIdolMemberList().forEach(
+                x -> System.out.println(x.getM_id())
+        );
     }
 }

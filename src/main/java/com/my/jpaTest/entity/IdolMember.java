@@ -21,5 +21,5 @@ public class IdolMember {
 
     @ManyToOne
     @JoinColumn(name = "g_id")
-    private Girlgroup girlgroup;
+    Girlgroup girlgroup;
 }

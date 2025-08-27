@@ -28,14 +28,13 @@ public class EntertainmentService {
         Girlgroup ive = Girlgroup.builder()
                 .g_id("ive")
                 .g_name("아이브")
+                .entertainment(starship)
                 .build();
         Girlgroup blackPink = Girlgroup.builder()
                 .g_id("blackPink")
                 .g_name("블랙핑크")
+                .entertainment(yg)
                 .build();
-        // 걸그룹에 엔터테인먼트 할당
-        ive.setEntertainment(starship);
-        blackPink.setEntertainment(yg);
         // 걸그룹리스트에 추가
         starship.getGirlgroupList().add(ive);
         yg.getGirlgroupList().add(blackPink);
@@ -43,24 +42,23 @@ public class EntertainmentService {
         IdolMember ahn = IdolMember.builder()
                 .m_id("안유진")
                 .m_name("유진")
+                .girlgroup(ive)
                 .build();
         IdolMember jang = IdolMember.builder()
                 .m_id("장원영")
                 .m_name("원영")
+                .girlgroup(ive)
                 .build();
         IdolMember jenny = IdolMember.builder()
                 .m_id("제니")
                 .m_name("째니")
+                .girlgroup(blackPink)
                 .build();
         IdolMember jisu = IdolMember.builder()
                 .m_id("지수")
                 .m_name("지수다")
+                .girlgroup(blackPink)
                 .build();
-        // 멤버에 걸그룹 할당
-        ahn.setGirlgroup(ive);
-        jang.setGirlgroup(ive);
-        jenny.setGirlgroup(blackPink);
-        jisu.setGirlgroup(blackPink);
         // 멤버리스트에 추가
         ive.getIdolMemberList().add(ahn);
         ive.getIdolMemberList().add(jang);
