@@ -68,7 +68,7 @@ class RelationTestServiceTest {
             System.out.println(m.getName());
         }
     }
-
+  
     @Test
     @DisplayName("영속성 전이 테스트")
     void persistTest() {
