@@ -56,7 +56,7 @@ class RelationTestServiceTest {
     @Test
     @DisplayName("양방향 연관관계 설정 후 저장하기")
     void saveBothData() {
-        // relationTestService.insertBothRelation();
+         // relationTestService.insertBothRelation();
     }
 
     @Test
