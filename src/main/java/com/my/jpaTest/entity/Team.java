@@ -4,10 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+// StackOverflowError 무한재귀
+// Member.toString() → team → Team.toString() → memberList → Member.toString() → …
+@ToString(exclude = "memberList")
 public class Team {
     @Id
     private String teamId; // 외래키(foreign key)

@@ -11,6 +11,9 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+// StackOverflowError 무한재귀
+// Member.toString() → team → Team.toString() → memberList → Member.toString() → …
+@ToString(exclude = "team")
 public class Member {
     @Id
     private String memberId;
