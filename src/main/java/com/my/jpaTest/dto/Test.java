@@ -1,7 +1,6 @@
 package com.my.jpaTest.dto;
 
 import lombok.Data;
-import lombok.extern.java.Log;
 
 @Data
 public class Test {
